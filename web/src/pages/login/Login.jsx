@@ -38,6 +38,10 @@ const Login = () => {
   };
   return (
     <div className="login">
+      {/* Decorative Background Elements */}
+      <div className="bg-decor blob1"></div>
+      <div className="bg-decor blob2"></div>
+
       <div className="formContainer">
         <form onSubmit={handleSubmit}>
           <h1>Welcome back</h1>

@@ -1,90 +1,190 @@
 @import "../../responsive.scss";
+@import "../../colors.scss";
 
 .profilePage {
   display: flex;
-  height: 100%;
+  height: 100vh;
+  background-color: #fff;
 
-  @include md{
+  @include md {
     flex-direction: column;
-    overflow: scroll;
+    overflow-y: auto;
+    height: auto;
   }
 
   .details {
     flex: 3;
-    overflow-y: scroll;
-    padding-bottom: 50px;
+    overflow-y: auto;
+    padding: 0 50px;
+    animation: fadeInUp 0.8s ease-out;
 
-    @include md{
-      flex:none;
-      height: max-content;
+    @include md {
+      flex: none;
+      padding: 20px;
     }
 
-    .wrapper{
-      padding-right: 50px;
+    .wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding-top: 50px;
+      padding-bottom: 100px;
       display: flex;
       flex-direction: column;
       gap: 50px;
 
-      .title{
+      @include md {
+        padding-top: 20px;
+      }
+
+      .title {
         display: flex;
         align-items: center;
         justify-content: space-between;
 
-        h1{
-          font-weight: 300;
+        h1 {
+          font-weight: 800;
+          font-size: 32px;
         }
 
-        button{
+        button {
           padding: 12px 24px;
           background-color: #fece51;
+          border-radius: 10px;
           cursor: pointer;
           border: none;
+          font-weight: 600;
+          transition: all 0.3s ease;
+
+          &:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(254, 206, 81, 0.3);
+          }
+        }
+
+        .create-btn {
+          background-color: $bg-primary;
+          color: white;
+
+          &:hover {
+            background-color: darken($bg-primary, 5%);
+            box-shadow: 0 5px 15px rgba(58, 175, 169, 0.3);
+          }
         }
       }
 
-      .info{
+      .info {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 25px;
+        padding: 30px;
 
-        span{
+        .user-header {
           display: flex;
           align-items: center;
-          gap: 20px;
+          gap: 30px;
+
+          .avatar-wrapper {
+            position: relative;
+            
+            img {
+              width: 100px;
+              height: 100px;
+              border-radius: 25px;
+              object-fit: cover;
+              box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+
+            .status-badge {
+              position: absolute;
+              bottom: 5px;
+              right: 5px;
+              width: 20px;
+              height: 20px;
+              background-color: #4caf50;
+              border: 4px solid white;
+              border-radius: 50%;
+            }
+          }
+
+          .user-meta {
+            h2 {
+              font-size: 28px;
+              font-weight: 800;
+              margin-bottom: 5px;
+            }
+
+            span {
+              color: #777;
+              font-size: 16px;
+            }
+          }
         }
 
-        button{
-          width: 100px;
-          background-color: teal;
+        .logout-btn {
+          width: max-content;
+          background-color: #ff4d4d;
           border: none;
           color: white;
-          padding: 10px 20px;
+          padding: 12px 30px;
           cursor: pointer;
-          border-radius: 5px;
-        }
+          border-radius: 10px;
+          font-weight: 600;
+          transition: all 0.3s ease;
 
-        img{
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          object-fit: cover;
+          &:hover {
+            background-color: #e60000;
+            box-shadow: 0 5px 15px rgba(255, 77, 77, 0.3);
+          }
         }
+      }
+
+      .list-wrapper {
+        min-height: 200px;
       }
     }
   }
+
   .chatContainer {
     flex: 2;
-    background-color: #fcf5f3;
+    background: linear-gradient(135deg, #fcf5f3 0%, #def2f1 100%);
     height: 100%;
+    position: relative;
 
-    @include md{
-      flex:none;
-      height: max-content;
+    @include md {
+      flex: none;
+      height: 600px;
     }
 
-    .wrapper{
-      padding: 0px 20px;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
       height: 100%;
+      background: radial-gradient(circle at 70% 20%, rgba(58, 175, 169, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .wrapper {
+      padding: 30px;
+      height: 100%;
+      position: relative;
     }
   }
+
+  .loader {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid $bg-primary;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 50px auto;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

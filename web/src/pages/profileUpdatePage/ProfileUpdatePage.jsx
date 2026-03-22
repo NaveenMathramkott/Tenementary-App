@@ -36,8 +36,8 @@ const ProfileUpdatePage = () => {
   return (
     <div className="profileUpdatePage">
       <div className="formContainer">
-        <form onSubmit={handleSubmit}>
-          <h1>Update Profile</h1>
+        <form onSubmit={handleSubmit} className="glass-container">
+          <h1 className="gradient-text">Update Profile</h1>
           <div className="item">
             <label htmlFor="username">Username</label>
             <input
@@ -58,28 +58,32 @@ const ProfileUpdatePage = () => {
           </div>
           <div className="item">
             <label htmlFor="password">Password</label>
-            <input id="password" name="password" type="password" />
+            <input id="password" name="password" type="password" placeholder="Leave empty to keep current" />
           </div>
-          <button>Update</button>
-          {error && <span>error</span>}
+          <button className="update-btn">Update Profile</button>
+          {error && <span className="error">{error}</span>}
         </form>
       </div>
-      <div className="sideContainer">
-        <img
-          src={avatar[0] || currentUser.avatar || "/noavatar.jpg"}
-          alt=""
-          className="avatar"
-        />
-        <UploadWidget
-          uwConfig={{
-            cloudName: "lamadev",
-            uploadPreset: "estate",
-            multiple: false,
-            maxImageFileSize: 2000000,
-            folder: "avatars",
-          }}
-          setState={setAvatar}
-        />
+      <div className="sideContainer bg-gradient-soft">
+        <div className="avatar-preview">
+          <img
+            src={avatar[0] || currentUser.avatar || "/noavatar.jpg"}
+            alt=""
+            className="avatar"
+          />
+          <div className="upload-wrapper">
+            <UploadWidget
+              uwConfig={{
+                cloudName: "lamadev",
+                uploadPreset: "estate",
+                multiple: false,
+                maxImageFileSize: 2000000,
+                folder: "avatars",
+              }}
+              setState={setAvatar}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

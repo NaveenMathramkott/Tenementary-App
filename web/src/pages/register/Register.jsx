@@ -36,6 +36,10 @@ const Register = () => {
   };
   return (
     <div className="registerPage">
+      {/* Decorative Background Elements */}
+      <div className="bg-decor blob1"></div>
+      <div className="bg-decor blob2"></div>
+
       <div className="formContainer">
         <form onSubmit={handleSubmit}>
           <h1>Create an Account</h1>

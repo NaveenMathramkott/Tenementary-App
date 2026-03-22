@@ -1,6 +1,42 @@
+@import "../../responsive.scss";
+@import "../../colors.scss";
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .login {
-  height: 100%;
+  height: 100vh;
   display: flex;
+  position: relative;
+  overflow: hidden;
+
+  // Background blobs
+  .bg-decor {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(58, 175, 169, 0.2) 0%, rgba(43, 122, 120, 0.1) 100%);
+    filter: blur(120px);
+    z-index: -1;
+
+    &.blob1 {
+      top: -150px;
+      left: -150px;
+    }
+    &.blob2 {
+      bottom: -100px;
+      right: 20%;
+    }
+  }
 
   .formContainer {
     flex: 3;
@@ -8,54 +44,128 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1;
 
     form {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 25px;
+      padding: 50px;
+      width: 100%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      animation: fadeInUp 0.8s ease-out;
 
-      input{
-        padding: 20px;
-        border: 1px solid gray;
-        border-radius: 5px;
+      h1 {
+        font-size: 36px;
+        font-weight: 800;
+        background: linear-gradient(45deg, #17252a 30%, #3aafa9 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        margin-bottom: 10px;
       }
 
-      button{
-        padding: 20px;
-        border-radius: 5px;
-        border: none;
-        background-color: teal;
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
+      input {
+        padding: 18px 24px;
+        border: 1px solid #eee;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.8);
+        font-size: 16px;
+        transition: all 0.3s ease;
 
-        &:disabled{
-          background-color: #BED9D8;
+        &:focus {
+          border-color: #3aafa9;
+          outline: none;
+          box-shadow: 0 0 10px rgba(58, 175, 169, 0.1);
+          background: white;
+        }
+      }
+
+      button {
+        padding: 18px;
+        border-radius: 12px;
+        border: none;
+        background-color: $bg-primary;
+        color: white;
+        font-weight: 700;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 20px rgba(58, 175, 169, 0.2);
+
+        &:hover {
+          background-color: darken($bg-primary, 5%);
+          transform: translateY(-2px);
+          box-shadow: 0 15px 25px rgba(58, 175, 169, 0.3);
+        }
+
+        &:disabled {
+          background-color: #ccc;
+          transform: none;
+          box-shadow: none;
           cursor: not-allowed;
         }
       }
 
-      span{
-        color: rgba(255, 0, 0, 0.591);
+      span {
+        color: #ff4d4d;
+        font-size: 14px;
+        text-align: center;
+        background: rgba(255, 77, 77, 0.1);
+        padding: 10px;
+        border-radius: 8px;
       }
 
-      a{
+      a {
         font-size: 14px;
-        color: gray;
-        border-bottom: 1px solid gray;
-        width: max-content;
+        color: #777;
+        text-align: center;
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: $bg-primary;
+          text-decoration: underline;
+        }
       }
     }
   }
 
   .imgContainer {
     flex: 2;
-    background-color: #fcf5f3;
+    background: linear-gradient(135deg, #fcf5f3 0%, #def2f1 100%);
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    position: relative;
+
+    @include md {
+      display: none;
+    }
+
     img {
       width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.8;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.4), transparent);
     }
   }
 }

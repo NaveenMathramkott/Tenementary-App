@@ -27,58 +27,58 @@ const ProfilePage = () => {
       <div className="details">
         <div className="wrapper">
           <div className="title">
-            <h1>User Information</h1>
+            <h1 className="gradient-text">User Information</h1>
             <Link to="/profile/update">
               <button>Update Profile</button>
             </Link>
           </div>
-          <div className="info">
-            <span>
-              Avatar:
-              <img src={currentUser.avatar || "noavatar.jpg"} alt="" />
-            </span>
-            <span>
-              Username: <b>{currentUser.username}</b>
-            </span>
-            <span>
-              E-mail: <b>{currentUser.email}</b>
-            </span>
-            <button onClick={handleLogout}>Logout</button>
+          <div className="info glass-container">
+            <div className="user-header">
+              <div className="avatar-wrapper">
+                <img src={currentUser.avatar || "/noavatar.jpg"} alt="" />
+                <div className="status-badge"></div>
+              </div>
+              <div className="user-meta">
+                <h2>{currentUser.username}</h2>
+                <span>{currentUser.email}</span>
+              </div>
+            </div>
+            <button className="logout-btn" onClick={handleLogout}>Logout</button>
           </div>
           <div className="title">
-            <h1>My List</h1>
+            <h1 className="gradient-text">My Properties</h1>
             <Link to="/add">
-              <button>Create New Post</button>
+              <button className="create-btn">Create New Post</button>
             </Link>
           </div>
-          <Suspense fallback={<p>Loading...</p>}>
-            <Await
-              resolve={data?.postResponse}
-              errorElement={<p>Error loading posts!</p>}
-            >
-              {(postResponse) => <List posts={postResponse?.data?.userPosts} />}
-            </Await>
-          </Suspense>
-          <div className="title">
-            <h1>Saved List</h1>
+          <div className="list-wrapper">
+            <Suspense fallback={<div className="loader"></div>}>
+              <Await
+                resolve={data?.postResponse}
+                errorElement={<p>Error loading posts!</p>}
+              >
+                {(postResponse) => <List posts={postResponse?.data?.userPosts} />}
+              </Await>
+            </Suspense>
           </div>
-          <Suspense fallback={<p>Loading...</p>}>
-            <Await
-              resolve={data?.postResponse}
-              errorElement={<p>Error loading posts!</p>}
-            >
-              {(postResponse) => {
-                console.log("post response------", postResponse);
-
-                return <List posts={postResponse?.data?.savedPosts} />;
-              }}
-            </Await>
-          </Suspense>
+          <div className="title">
+            <h1 className="gradient-text">Saved Properties</h1>
+          </div>
+          <div className="list-wrapper">
+            <Suspense fallback={<div className="loader"></div>}>
+              <Await
+                resolve={data?.postResponse}
+                errorElement={<p>Error loading posts!</p>}
+              >
+                {(postResponse) => <List posts={postResponse?.data?.savedPosts} />}
+              </Await>
+            </Suspense>
+          </div>
         </div>
       </div>
       <div className="chatContainer">
         <div className="wrapper">
-          <Suspense fallback={<p>Loading...</p>}>
+          <Suspense fallback={<div className="loader"></div>}>
             <Await
               resolve={data?.chatResponse}
               errorElement={<p>Error loading chats!</p>}

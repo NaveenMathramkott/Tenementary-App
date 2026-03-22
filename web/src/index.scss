@@ -4,12 +4,57 @@
   box-sizing: border-box;
 }
 
+@import "./colors.scss";
+@import "./responsive.scss";
+
+// Global Transitions & Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
 a {
   text-decoration: none;
   color: inherit;
+  transition: all 0.3s ease;
 }
 
 body {
   font-family: "Lato", sans-serif;
   overflow: hidden;
+  background-color: white;
+  color: $text-light;
+}
+
+// Utility Classes for New Design
+.bg-gradient-soft {
+  background: linear-gradient(135deg, #fcf5f3 0%, #def2f1 100%);
+}
+
+// Global Glassmorphism Mixin/Style
+.glass-container {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, #17252a 30%, #3aafa9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
