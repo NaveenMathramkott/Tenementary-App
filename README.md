@@ -1,7 +1,7 @@
 <div align="center">
   <br />
     <a href="https://github.com/NaveenMathramkott/real-estate-mern" target="_blank">
-      <img src="https://i.ibb.co/0Vkx3Ng/MERN-Real-estate.png" alt="Project Banner">
+      <!-- <img src="https://i.ibb.co/0Vkx3Ng/MERN-Real-estate.png" alt="Project Banner"> -->
     </a>
   <br />
 
